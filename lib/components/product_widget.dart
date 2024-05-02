@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:sample_project/home/controller.dart';
 import 'package:sample_project/modal/product.dart';
 
 class ProductWidget extends StatelessWidget {
@@ -9,6 +10,7 @@ class ProductWidget extends StatelessWidget {
   ProductWidget({super.key, required this.product});
 
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     return Obx(() => Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -38,20 +40,14 @@ class ProductWidget extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.remove),
                     onPressed: () {
-                      if (product.value.quantity > 1) {
-                        product.update((val) {
-                          product.value.quantity--;
-                        });
-                      }
+                      Get.find<HomeController>().decrement(product);
                     },
                   ),
                   Text(product.value.quantity.toString()),
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      product.update((val) {
-                        product.value.quantity++;
-                      });
+                      Get.find<HomeController>().increment(product);
                     },
                   ),
                 ],

@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sample_project/components/product_widget.dart';
 import 'package:sample_project/home/controller.dart';
-import 'package:sample_project/modal/product.dart';
 
 class HomeView extends GetResponsiveView<HomeController> {
   HomeView({super.key});
@@ -26,21 +25,21 @@ class HomeView extends GetResponsiveView<HomeController> {
                   width: 50,
                   height: 50,
                 ),
-                Positioned(
-                  right: 0,
-                  child: CircleAvatar(
-                    backgroundColor:
-                        Colors.red, // Background color of the badge
-                    radius: 12, // Radius of the badge
-                    child: Text(
-                      controller.totalQuantity.toString(),
-                      style: TextStyle(
-                        color: Colors.white, // Color of the count text
-                        fontSize: 12, // Font size of the count text
+                Obx(() => Positioned(
+                      right: 0,
+                      child: CircleAvatar(
+                        backgroundColor:
+                            Colors.red, // Background color of the badge
+                        radius: 12, // Radius of the badge
+                        child: Text(
+                          controller.total.value.toString(),
+                          style: const TextStyle(
+                            color: Colors.white, // Color of the count text
+                            fontSize: 12, // Font size of the count text
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                )
+                    ))
               ],
             ),
           )

@@ -64,4 +64,6 @@ class HomeVariables {
       price: 79.99,
     ).obs,
   ];
+
+  RxInt total = 0.obs;
 }
